@@ -43,7 +43,6 @@ void Widget::paintEvent(QPaintEvent *event)
     QPainter *painter = new QPainter(this);
 
 
-#if 0
     // 定义一个图片控件
     QPixmap pix;
     pix.load(":/assets/img/fly-pig.jpg");
@@ -76,10 +75,20 @@ void Widget::paintEvent(QPaintEvent *event)
 
     qDebug()<<"x="<<x<<" y="<<y;
 
-#endif
 
     // 画家画线
-    painter->drawLine(0,0,500,500);
+    painter->drawLine(0,0,this->width(),this->height());
+
+    //设置画笔颜色
+    painter->setPen(QColor("red"));
+
+
+    // 画矩形框
+    painter->drawRect(50,50, 200,200);
+
+    // 画圆
+    painter->drawEllipse(180,80, 500,500);
+
 
 }
 
