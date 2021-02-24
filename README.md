@@ -124,7 +124,23 @@ void Widget::paintEvent(QPaintEvent *event)
 
 ## 画矩形 rectangle         drawRectl
 
+~~~cpp
 
+    // 画矩形框
+    painter->drawRect(50,50, 200,200);
+
+~~~
+
+
+
+~~~cpp
+ //设置画笔颜色
+    painter->setPen(QColor("red"));
+ 
+// 画圆
+    painter->drawEllipse(180,80, 500,500);
+
+~~~
 
 
 
