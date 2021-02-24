@@ -42,6 +42,8 @@ void Widget::paintEvent(QPaintEvent *event)
     // 定义一个画家  花图片
     QPainter *painter = new QPainter(this);
 
+
+#if 0
     // 定义一个图片控件
     QPixmap pix;
     pix.load(":/assets/img/fly-pig.jpg");
@@ -74,6 +76,10 @@ void Widget::paintEvent(QPaintEvent *event)
 
     qDebug()<<"x="<<x<<" y="<<y;
 
+#endif
+
+    // 画家画线
+    painter->drawLine(0,0,500,500);
 
 }
 

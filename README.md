@@ -75,7 +75,7 @@
 void Widget::paintEvent(QPaintEvent *event)
 {
 
-    // 定义一个画家  花图片
+    // 定义一个画家  画图片
     QPainter *painter = new QPainter(this);
 
     // 定义一个图片控件
@@ -108,9 +108,21 @@ void Widget::paintEvent(QPaintEvent *event)
 
 
 
+##  画线 drawLine
 
 
 
+```cpp
+    // 定义一个画家 
+    QPainter *painter = new QPainter(this);
+
+    // 画家画线
+    painter->drawLine(0,0,500,500);
+```
+
+
+
+## 画矩形 rectangle         drawRectl
 
 
 
