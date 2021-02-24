@@ -4,6 +4,8 @@
 #include<QPainter>
 #include<QPixmap>
 #include<QDebug>
+#include<QBitmap>
+#include <QPicture>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -27,6 +29,60 @@ Widget::Widget(QWidget *parent)
     });
 
 
+#if 0
+    // 定义一个绘图设备
+    QBitmap bitmap(300,300);
+    // 定义一个画家  由于这里的参数是指针,所以需要传递一个bitmap的地址
+    QPainter painter(&bitmap);
+
+    painter.drawEllipse(QPoint(100,100),50,50);
+    //保存图片
+    bitmap.save("./mybitmap.jpg");
+
+#endif
+
+#if 0
+    // 定义一个QImage设备
+    QImage img;
+    // 加载一张图片
+    img.load(":/assets/img/great.jpg");
+    img.scaled(1024,1024);
+
+    int value = qRgb(255,0,0);
+    for (int i=300; i<800 ;i++ ) {
+        for (int j=300;j<800 ;j++ ) {
+           //设置像素
+            img.setPixel(i,j,value);
+        }
+    }
+
+    QPainter painter2(&img);
+    painter2.drawEllipse(QPoint(900,900),600,600);
+    img.save("./qimg.jpg");
+
+#endif
+
+#if 0
+    // 定义绘图设备
+    QPicture picture;
+    // 定义画家
+    QPainter painterp;
+
+    //记录绘图指令
+    painterp.begin(&picture);
+
+    // 画圆
+    painterp.drawEllipse(100,100,100,100);
+
+    // 结束记录绘图指令
+    painterp.end();
+
+    // 保存绘图指令
+    picture.save("/tmp/pic.zl");
+    qDebug("绘图指令保存成功");
+
+#endif
+
 
 }
 
@@ -39,6 +95,7 @@ Widget::~Widget()
 void Widget::paintEvent(QPaintEvent *event)
 {
 
+#if 1
     // 定义一个画家  花图片
     QPainter *painter = new QPainter(this);
 
@@ -88,7 +145,20 @@ void Widget::paintEvent(QPaintEvent *event)
 
     // 画圆
     painter->drawEllipse(180,80, 500,500);
+#endif
 
+#if 1
+    // 在paintEvent事件中 重现绘图指令到主窗口
+    // 定义绘图设备
+    QPicture picture;
+    // 定义画家
+    QPainter painterp(this);
+    // 加载绘图指令
+    picture.load("/tmp/pic.zl");
 
+    //画家根据绘图指令绘图
+    painterp.drawPicture(10,390,picture);
+
+#endif
 }
 
