@@ -274,6 +274,44 @@ QPixmap 使用底层平台的绘制系统进行绘制， 无法提供像素级�
 
 
 
+## QT启动画面显示3秒 完美解决方法
+
+利用定时器的singleShot完美实现启动画面显示X秒后在启动主窗口
+
+main.cpp
+
+~~~cpp
+#include "mainwindow.h"
+#include <QApplication>
+#include <QSplashScreen>
+#include <QTimer>
+
+int main(int argc, char *argv[])
+{
+  QApplication a(argc, argv);
+  MainWindow w;
+
+  QPixmap pixmap(":/images/splash.png");
+  QSplashScreen splash(pixmap);
+  splash.show();// 显示启动画面
+
+  QTimer::singleShot(3000, &splash, SLOT(close()));//启动画面显示3秒后自动关闭
+  QTimer::singleShot(3000, &w, SLOT(show()));// 3秒后显示主窗口
+
+  return a.exec();
+}
+~~~
+
+
+
+
+
+
+
+
+
+
+
 
 
 
